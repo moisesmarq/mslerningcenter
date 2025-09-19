@@ -1,7 +1,7 @@
 ﻿using System;
 
 // initialize variables - graded assignments 
-int currentAssignments = 5;
+int tarefas_notas_normais = 5;
 
 //Declaracao do array de nomes dos alunos
 string[] studentNames = new string[]
@@ -13,16 +13,15 @@ string[] studentNames = new string[]
 };
 
 //Declaracao do arrays que receberam as notas.
-int[] sophiaScores = new int[] { 90, 86, 87, 98, 100 };
-int[] andrewScores = [92, 89, 81, 96, 90];
-int[] emmaScores = new int[] { 90, 85, 87, 98, 68 };
-int[] loganScores = [90, 95, 87, 88, 96];
+int[] sophiaScores = new int[] { 90, 86, 87, 98, 100, 94, 90 }; //Adicinado notas extras: 94 e 90
+int[] andrewScores = [92, 89, 81, 96, 90, 89];  //Adicinado notas extras: 89
+int[] emmaScores = new int[] { 90, 85, 87, 98, 68, 89, 89, 89 }; //Adicinado notas extras: 89, 89, 89
+int[] loganScores = [90, 95, 87, 88, 96, 96]; //Adicinado notas extras: 96
 
 //Array que vai receber os array de notas do estudantes
 int[] studentScores = new int[10];
 
 string currentStudentLetterGrade = "";
-
 
 Console.WriteLine("Student\t\tGrade\n");
 
@@ -49,14 +48,23 @@ foreach (string name in studentNames)
 
     int scoreSum = 0;
     decimal currentStudentGrade = 0;
+    int tarefas_notas_extras = 0;
 
     foreach (int score in studentScores)
-    {
-        // add the exam score to the sum
-        scoreSum += score;
+    {   
+        tarefas_notas_extras++;
+        if (tarefas_notas_extras > tarefas_notas_normais)
+        {
+            scoreSum += score / 10;
+        }
+        else
+        {
+            // add the exam score to the sum
+            scoreSum += score;
+        }
     }
 
-    currentStudentGrade = (decimal)scoreSum / currentAssignments;
+    currentStudentGrade = (decimal)scoreSum / tarefas_notas_normais;
 
     if (currentStudentGrade >= 97)
         currentStudentLetterGrade = "A+";
